@@ -1,0 +1,36 @@
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+    ports:
+      - "1433:1433"
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "Password123"
+      MSSQL_MEMORY_LIMIT_MB: "1024"
+    volumes:
+      - mssql_data_v2:/var/opt/mssql
+    networks:
+      - book-network
+
+  backend:
+    build: .
+    container_name: backend
+    ports:
+      - "5001:5001"
+    environment:
+      - DATABASE_URL=mssql+pyodbc://sa:Password123@sqlserver:1433/master?driver=ODBC+Driver+18+for+SQL+Server&TrustServerCertificate=yes
+      - SECRET_KEY=dev-secret-key-change-this-in-production
+      - ALGORITHM=HS256
+      - ACCESS_TOKEN_EXPIRE_MINUTES=60
+    depends_on:
+      - sqlserver
+    networks:
+      - book-network
+
+volumes:
+  mssql_data_v2:
+
+networks:
+  book-network:
+    driver: bridge

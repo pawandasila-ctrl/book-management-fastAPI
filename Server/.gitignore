@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+.venv/
+.Python
+
+# Pytest
+.pytest_cache/
+
+# Database files
+*.db
+*.sqlite3
+books.db
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.*
+
+# IDE/editor
+.vscode/
+.idea/
+.DS_Store
+
+# Byte-compiled / distribution
+build/
+dist/
+*.egg-info/
+
+# Temporary files
+*.swp
+*.tmp
