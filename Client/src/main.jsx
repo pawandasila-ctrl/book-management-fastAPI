@@ -22,4 +22,4 @@ const initApp = async () => {
   );
 };
 
-initApp();
+initApp(); 
