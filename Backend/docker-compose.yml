@@ -16,6 +16,8 @@ services:
   backend:
     build: .
     container_name: backend
+    mem_limit: 1g
+    cpus: 1
     ports:
       - "5001:5001"
     environment:
